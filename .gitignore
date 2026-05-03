@@ -3,5 +3,6 @@ __pycache__/
 *.pyc
 _build/
 gmonctl.pyz
+.claude/
 CLAUDE.md
 PROMPT.md
