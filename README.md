@@ -1,6 +1,7 @@
 # gmonctl
 
 Move all GNOME Wayland application windows to the primary monitor.
+Useful when secondary monitors are turned off as gnome does not seem to have native functionality to move the windows to main screen.
 
 ```bash
 gmonctl rescue    # move all windows to primary monitor
@@ -44,6 +45,8 @@ Verify it is running:
 ```bash
 gnome-extensions info gmonctl@local
 ```
+
+Alternatively run ./install.sh to follow the instructions and install and ./uninstall.sh to remove the extensions and tool.
 
 ### 2. Install the Python CLI
 
@@ -153,36 +156,11 @@ $ gmonctl list
 - `gdbus` (provided by `libglib2.0-bin` on Ubuntu)
 - Python 3.10+
 
-Ubuntu:
+Ubuntu (it was already present on ubuntu26.04 LTS):
 
 ```bash
 sudo apt install libglib2.0-bin
 ```
-
----
-
-## D-Bus interface
-
-Service: `org.local.GMonCtl`  
-Object path: `/org/local/GMonCtl`  
-Interface: `org.local.GMonCtl`
-
-| Method | Returns | Description |
-|--------|---------|-------------|
-| `RescueWindows()` | `int32` | Count of windows moved |
-| `ListWindows()` | `string` (JSON) | Array of window objects |
-| `ListMonitors()` | `string` (JSON) | Array of monitor objects |
-
-Test directly with gdbus:
-
-```bash
-gdbus call --session \
-  --dest org.local.GMonCtl \
-  --object-path /org/local/GMonCtl \
-  --method org.local.GMonCtl.RescueWindows
-```
-
----
 
 ## File layout
 
@@ -198,15 +176,6 @@ gmonctl/
   Makefile             # `make build` produces gmonctl.pyz
   pyproject.toml
   README.md
+  install.sh           # install
+  uninstall.sh         # uninstall
 ```
-
-## Troubleshooting
-
-**`D-Bus call failed` error**  
-The extension is not enabled. Run `gnome-extensions enable gmonctl@local` and verify with `gnome-extensions info gmonctl@local`.
-
-**`gdbus not found`**  
-Install `libglib2.0-bin`: `sudo apt install libglib2.0-bin`.
-
-**Extension shows as `ERROR` state**  
-Check GNOME Shell logs: `journalctl /usr/bin/gnome-shell -f`. The most common cause is a syntax error in `extension.js` or a GNOME Shell version not listed in `metadata.json`.
