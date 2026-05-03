@@ -3,3 +3,5 @@ __pycache__/
 *.pyc
 _build/
 gmonctl.pyz
+CLAUDE.md
+PROMPT.md
