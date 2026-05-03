@@ -1,0 +1,12 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gmonctl"
+version = "1.0.0"
+description = "Move GNOME Wayland windows to the primary monitor"
+requires-python = ">=3.10"
+
+[project.scripts]
+gmonctl = "gmonctl.cli:main"

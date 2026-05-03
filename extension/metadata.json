@@ -1,0 +1,8 @@
+{
+  "name": "GMonCtl",
+  "description": "Expose a D-Bus service to move windows to the primary monitor.",
+  "uuid": "gmonctl@local",
+  "shell-version": ["45", "46", "47", "48", "49", "50"],
+  "version": 1,
+  "session-modes": ["user"]
+}
